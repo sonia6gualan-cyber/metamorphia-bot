@@ -82,21 +82,20 @@ async def manejar_mensajes(update: Update, context: ContextTypes.DEFAULT_TYPE):
         context.user_data.clear()
 
 
-async def main():
+def main():
     token = os.getenv("BOT_TOKEN")
-
     if not token:
         raise RuntimeError("❌ No se encontró la variable de entorno BOT_TOKEN")
 
     app = ApplicationBuilder().token(token).build()
 
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, manejar_mensajes))
+    # aquí van tus handlers (mensajes, comandos, etc.)
 
     print("🤖 Bot METAMORPHIA activo 24/7...")
-    await app.run_polling()
+    app.run_polling()
 
 
 if __name__ == "__main__":
-    import asyncio
-    asyncio.run(main())
+    main()
+
+
